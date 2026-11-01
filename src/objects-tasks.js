@@ -382,40 +382,17 @@ function group(array, keySelector, valueSelector) {
  */
 
 class Selector {
-  stringify() {
-    return '';
-  }
+  element() { return this; }
+  id() { return this; }
+  class() { return this; }
+  attr() { return this; }
+  pseudoClass() { return this; }
+  pseudoElement() { return this; }
+  combine() { return this; }
+  stringify() { return ''; }
 }
 
-const cssSelectorBuilder = {
-  element() {
-    return new Selector();
-  },
-
-  id() {
-    return new Selector();
-  },
-
-  class() {
-    return new Selector();
-  },
-
-  attr() {
-    return new Selector();
-  },
-
-  pseudoClass() {
-    return new Selector();
-  },
-
-  pseudoElement() {
-    return new Selector();
-  },
-
-  combine() {
-    return new Selector();
-  },
-};
+const cssSelectorBuilder = new Selector();
 
 module.exports = {
   shallowCopy,
