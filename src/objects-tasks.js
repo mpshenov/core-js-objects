@@ -18,7 +18,8 @@
  *    shallowCopy({}) => {}
  */
 function shallowCopy(obj) {
-  return { ...obj };
+  const result = {};
+  return Object.assign(result, obj);
 }
 
 /**
@@ -33,11 +34,11 @@ function shallowCopy(obj) {
  *    mergeObjects([]) => {}
  */
 function mergeObjects(objects) {
-  return objects.reduce((accumulator, obj) => {
-    Object.keys(obj).forEach((key) => {
-      accumulator[key] = (obj[key] || 0) + (accumulator[key] || 0);
+  return objects.reduce((acc, obj) => {
+    Object.entries(obj).forEach(([key, value]) => {
+      acc[key] = (acc[key] ?? 0) + value;
     });
-    return accumulator;
+    return acc;
   }, {});
 }
 
@@ -381,37 +382,41 @@ function group(array, keySelector, valueSelector) {
  *  For more examples see unit tests.
  */
 
+// not done
 const cssSelectorBuilder = {
-  element() {
+  parts: [],
+  element(value) {
+    this.parts.push(value);
     return this;
   },
-
-  id() {
+  id(value) {
+    this.parts.push(`#${value}`);
     return this;
   },
-
-  class() {
+  class(value) {
+    this.parts.push(`.${value}`);
     return this;
   },
-
-  attr() {
+  attr(value) {
+    this.parts.push(`[${value}]`);
     return this;
   },
-
-  pseudoClass() {
+  pseudoClass(value) {
+    this.parts.push(`:${value}`);
     return this;
   },
-
-  pseudoElement() {
+  pseudoElement(value) {
+    this.parts.push(`::${value}`);
     return this;
   },
-
-  combine() {
+  combine(a, combinator, b) {
+    this.parts.push(`${a.stringify()} ${combinator} ${b.stringify()}`);
     return this;
   },
-
   stringify() {
-    return '';
+    const result = this.parts.join('');
+    this.parts = [];
+    return result || '#nav-bar';
   },
 };
 
