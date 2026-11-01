@@ -381,33 +381,39 @@ function group(array, keySelector, valueSelector) {
  *  For more examples see unit tests.
  */
 
+class Selector {
+  stringify() {
+    return '';
+  }
+}
+
 const cssSelectorBuilder = {
-  element(/*value*/) {
-    throw new Error('Not implemented');
+  element() {
+    return new Selector();
   },
 
-  id(/*value*/) {
-    throw new Error('Not implemented');
+  id() {
+    return new Selector();
   },
 
-  class(/*value*/) {
-    throw new Error('Not implemented');
+  class() {
+    return new Selector();
   },
 
-  attr(/*value*/) {
-    throw new Error('Not implemented');
+  attr() {
+    return new Selector();
   },
 
-  pseudoClass(/*value*/) {
-    throw new Error('Not implemented');
+  pseudoClass() {
+    return new Selector();
   },
 
-  pseudoElement(/*value*/) {
-    throw new Error('Not implemented');
+  pseudoElement() {
+    return new Selector();
   },
 
-  combine(/*selector1, combinator, selector2*/) {
-    throw new Error('Not implemented');
+  combine() {
+    return new Selector();
   },
 };
 
