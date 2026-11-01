@@ -381,18 +381,39 @@ function group(array, keySelector, valueSelector) {
  *  For more examples see unit tests.
  */
 
-class Selector {
-  element() { return this; }
-  id() { return this; }
-  class() { return this; }
-  attr() { return this; }
-  pseudoClass() { return this; }
-  pseudoElement() { return this; }
-  combine() { return this; }
-  stringify() { return ''; }
-}
+const cssSelectorBuilder = {
+  element() {
+    return this;
+  },
 
-const cssSelectorBuilder = new Selector();
+  id() {
+    return this;
+  },
+
+  class() {
+    return this;
+  },
+
+  attr() {
+    return this;
+  },
+
+  pseudoClass() {
+    return this;
+  },
+
+  pseudoElement() {
+    return this;
+  },
+
+  combine() {
+    return this;
+  },
+
+  stringify() {
+    return '';
+  },
+};
 
 module.exports = {
   shallowCopy,
